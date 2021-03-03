@@ -175,7 +175,7 @@ class Bonnette:
             return response
 
     def handler(self, event: HttpRequest) -> HttpResponse:
-        parsed_url = urllib.parse.urlparse(event.url)
+        parsed_url = urllib.parse.urlparse(event.route_params.get('restOfPath', '/'))
         query_string = (
             urllib.parse.urlencode(event.params).encode() if event.params else b""
         )
